@@ -2,6 +2,8 @@
 
 [简体中文](NPM.zh-CN.md) · [README](../README.md) · [Permissions](USAGE.md)
 
+Source version: **0.2.1-rc3** (unreleased). The commands below use the published **0.2.1-rc2** package, which supports Desktop through **0.2.1-rc.2**.
+
 The `dsh-desktop-mcp-bridge` package contains the standalone MCP server and the DSH Desktop adapter. It requires Node >=22.19 and a supported official Desktop version. Codex plugin users can continue using the bundled server and adapter; register one MCP route at a time.
 
 Current version: **0.2.1-rc2**. Prerelease channel: **next**. Commands below pin the version explicitly.

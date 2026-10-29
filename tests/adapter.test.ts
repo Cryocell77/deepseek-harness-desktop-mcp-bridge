@@ -385,7 +385,7 @@ test('official metadata accepts complete supported pairs and rejects mixed or un
   await assert.rejects(assertCompatible(f.ctx), /dsh-tools@unresolved/);
   f.ctx.pluginPackages.packageOf = (specifier, parent) => {
     const meta = lookup(specifier, parent);
-    return meta && specifier.endsWith('/dsh-agent') ? { ...meta, version: '0.2.1-rc.3' } : meta;
+    return meta && specifier.endsWith('/dsh-agent') ? { ...meta, version: '99.0.0' } : meta;
   };
   await assert.rejects(assertCompatible(f.ctx), /Unsupported Desktop dependency combination/);
   f.ctx.pluginPackages.packageOf = (specifier, parent) => {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1-rc3 (unreleased)
+
+- Support DSH Desktop 0.2.1-rc.3 with Cordis 4.0.5 and Schemastery 3.18.5.
+- Retain the three previously supported Desktop combinations.
+- Update the adapter, portable Codex plugin and setup diagnostics.
+
 ## 0.2.1-rc2 — 2026-10-18
 
 - Add support for DSH Desktop 0.2.1-rc.2 / Cordis 4.0.5 / Schemastery 3.18.5.
