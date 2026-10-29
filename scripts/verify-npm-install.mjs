@@ -10,6 +10,9 @@ import { randomUUID } from 'node:crypto';
 
 const exec = promisify(execFile);
 const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
+const targets = JSON.parse(
+  await readFile(new URL('../src/compatibility.json', import.meta.url), 'utf8'),
+);
 const { values } = parseArgs({
   options: {
     package: { type: 'string' },
@@ -112,7 +115,7 @@ try {
   const setup = await call('dsh_setup_info');
   assert.equal(setup.bridgeVersion, pkg.version);
   assert.equal(setup.configuration.valid, true);
-  assert.equal(setup.supportedDesktops.length, 3);
+  assert.equal(setup.supportedDesktops.length, targets.length);
   const unavailable = await client.callTool({ name: 'dsh_connection_info', arguments: {} });
   assert.equal(unavailable.isError, true);
   assert.equal(JSON.parse(unavailable.content[0].text).code, 'DESKTOP_UNAVAILABLE');
