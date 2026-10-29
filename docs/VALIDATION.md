@@ -21,6 +21,8 @@ The automated assessment uses official runtime services and a scripted model in 
 
 ## Automated coverage
 
+The bridge's Zod dependency is pinned to **4.6.7**, addressing [GHSA-mrhx-c7xc-m3w5](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5). Production dependency auditing (`npm audit --omit=dev`) passes. The automated matrix was rerun after this dependency update; the live Desktop run below predates it.
+
 | Area               | Checks                                                                                                 |
 | ------------------ | ------------------------------------------------------------------------------------------------------ |
 | Tasks and sessions | Execution, follow-ups, busy-session rejection, request deduplication and bounded retention             |
