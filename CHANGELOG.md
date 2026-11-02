@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1-rc5 — 2026-11-02
+
+- Add DSH Desktop 0.2.1-rc.4 and 0.2.1-rc.5 support with Cordis 4.0.5 and Schemastery 3.18.5.
+- Retain all previously supported Desktop combinations.
+- Update the portable Codex plugin, Desktop adapter and setup diagnostics.
+
 ## 0.2.1-rc3 — 2026-10-30
 
 - Update Zod to 4.6.7 to address GHSA-mrhx-c7xc-m3w5.

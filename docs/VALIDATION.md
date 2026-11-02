@@ -1,17 +1,33 @@
 # Validation / 验证记录
 
-Bridge **v0.2.1-rc3**, macOS arm64, **2026-10-29 (Asia/Hong_Kong)**. Earlier results: [v0.2.0](VALIDATION-v0.2.md).
+Bridge **v0.2.1-rc5**, macOS arm64, **2026-11-02 (Asia/Hong_Kong)**. Earlier results: [v0.2.0](VALIDATION-v0.2.md).
 
 ## Compatibility matrix
 
 | Desktop/core | Cordis | Schemastery | Typecheck | Automated suite | Live Desktop                 |
 | ------------ | ------ | ----------- | --------- | --------------- | ---------------------------- |
 | 0.2.0-rc.2   | 4.0.4  | 3.18.4      | Passed    | 27 passed       | Not tested                   |
+| 0.2.1-rc.4   | 4.0.5  | 3.18.5      | Passed    | 27 passed       | —                            |
+| 0.2.1-rc.5   | 4.0.5  | 3.18.5      | Passed    | 27 passed       | Passed, local package        |
 | 0.2.1-rc.3   | 4.0.5  | 3.18.5      | Passed    | 27 passed       | Passed, local package        |
 | 0.2.1-rc.2   | 4.0.5  | 3.18.5      | Passed    | 27 passed       | Passed, npm installation     |
 | 0.2.1-rc.1   | 4.0.5  | 3.18.5      | Passed    | 27 passed       | Development build, see below |
 
 Run `npm run test:compatibility` to install each release's dependencies in a separate temporary directory and run typechecking and the full suite. Select one target with `-- --desktop 0.2.0-rc.2`. The tests use official Cordis, Loader, AgentLoop, Session, Preset and Default Model services with a scripted model provider; no API key is required.
+
+## rc.4 and rc.5 assessment
+
+Official source tags: `dsh-v0.2.1-rc.4` (`504a01a9578abc2c6f1fb896b1dc322c9fe24f66`) and `dsh-v0.2.1-rc.5` (`b830ec950faba0a46dda564be3e2d854afed94f1`). Compared with rc.3, Agent, AgentLoop, Session, Tools, LLM, Default Model, Preset Registry and App Boot changed only their package versions. Adapter API calls and permission guards require no implementation changes.
+
+The installed official macOS Desktop reports **0.2.1-rc.5**, with all inspected core packages matching rc.5, Cordis **4.0.5** and Schemastery **3.18.5**. An isolated rc.5 dependency tree passed typechecking and all 27 automated tests.
+
+## rc.5 live Desktop run
+
+On **2026-11-02 (Asia/Hong_Kong)**, bridge **0.2.1-rc5** was installed from the local package through the official Desktop-owned plugin installer while Desktop was quit. Configuration, authentication token, tool allowlist and plugin composition were preserved. No stale bridge lock or socket was present before Desktop reopened.
+
+A fresh consumer installation of the local package passed CLI/MCP initialization checks and connected to `runtime: existing-desktop`, `desktopVersion: 0.2.1-rc.5`, `adapter: dsh-v0.2.1-rc.5` and Cordis `4.0.5`. An isolated session completed a real model request with the expected response. Duplicate follow-up submission returned the same task; cancellation reached `cancelled`, with a terminal result available. Verification tasks were forgotten and the session closed, retaining its workspace.
+
+The live prompts requested no tools. Automated permission enforcement passed across all six supported combinations; allowed file edits and permission approval UI remain untested on rc.5.
 
 ## rc.3 adapter assessment
 
@@ -104,6 +120,8 @@ Environment: signed macOS DSH Desktop **0.2.1-rc.1**, pre-release bridge build, 
 - Linux Desktop, Windows transport and other DSH versions.
 - Long-running external side effects and production reliability.
 
-中文：四个精确版本组合均通过类型检查和自动化测试。从公共 npm 安装的桥接与适配器已在 rc.2 实机通过连接、真实模型任务、重复请求去重、取消和会话关闭验证；独立 npx 安装也通过 setup/doctor 检查。原有配置、权限与 token 保持不变。文件编辑与权限审批界面仍待实机验证；rc.1 的较早记录见上表。
+中文：六个精确版本组合均通过类型检查和自动化测试。从公共 npm 安装的桥接与适配器已在 rc.2 实机通过连接、真实模型任务、重复请求去重、取消和会话关闭验证；独立 npx 安装也通过 setup/doctor 检查。原有配置、权限与 token 保持不变。文件编辑与权限审批界面仍待实机验证；rc.1 的较早记录见上表。
 
 rc.3 实机验证：本地 0.2.1-rc3 安装包已在官方 Desktop 0.2.1-rc.3 通过连接、真实模型任务、重复请求去重、取消及会话关闭验证。首次启动遇到旧进程遗留锁；确认原进程不存在且 socket 无占用后，保留备份并重载桥接组件，连接恢复正常。
+
+rc.5 实机验证：已在官方 Desktop 0.2.1-rc.5 通过真实任务、请求去重、结果读取、取消及会话关闭检查。六个版本组合均通过类型检查和各 27 项自动化测试。本次实机检查使用本地安装包。
