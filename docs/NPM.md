@@ -4,12 +4,12 @@
 
 The `dsh-desktop-mcp-bridge` package contains the standalone MCP server and the DSH Desktop adapter. It requires Node >=22.19 and a supported official Desktop version. Codex plugin users can continue using the bundled server and adapter; register one MCP route at a time.
 
-Current version: **0.2.1-rc3**. Prerelease channel: **next**. Commands below pin the version explicitly.
+Current version: **0.2.1-rc5**. Prerelease channel: **next**. Commands below pin the version explicitly.
 
 ## 1. Initialize the private bridge configuration
 
 ```sh
-npx --yes --package dsh-desktop-mcp-bridge@0.2.1-rc3 dsh-desktop-mcp setup
+npx --yes --package dsh-desktop-mcp-bridge@0.2.1-rc5 dsh-desktop-mcp setup
 ```
 
 This creates the default private state/workspace directories or validates existing configuration without changing its token. Review tool permissions in the generated config. See [custom paths](STANDALONE-MCP.md) if the defaults cannot be used.
@@ -19,7 +19,7 @@ This creates the default private state/workspace directories or validates existi
 Save work and fully quit official DSH Desktop, then install the package using its application-owned installer:
 
 ```sh
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add dsh-desktop-mcp-bridge@0.2.1-rc3 --save-exact
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add dsh-desktop-mcp-bridge@0.2.1-rc5 --save-exact
 ```
 
 Use the actual application path if installed elsewhere. This command installs a plugin into the Desktop profile; it does not launch a separate Harness runtime. Reopen Desktop afterwards.
@@ -27,10 +27,10 @@ Use the actual application path if installed elsewhere. This command installs a 
 ## 3. Check the connection
 
 ```sh
-npx --yes --package dsh-desktop-mcp-bridge@0.2.1-rc3 dsh-desktop-mcp doctor
+npx --yes --package dsh-desktop-mcp-bridge@0.2.1-rc5 dsh-desktop-mcp doctor
 ```
 
-The result should report bridge `0.2.1-rc3` and `runtime: "existing-desktop"`. This check does not call the model.
+The result should report bridge `0.2.1-rc5` and `runtime: "existing-desktop"`. This check does not call the model.
 
 ## 4. Register the standalone MCP server
 
@@ -39,7 +39,7 @@ For Codex Desktop/CLI, add this to the user `config.toml`:
 ```toml
 [mcp_servers.dsh_desktop]
 command = "npx"
-args = ["--yes", "--package", "dsh-desktop-mcp-bridge@0.2.1-rc3", "dsh-desktop-mcp", "stdio"]
+args = ["--yes", "--package", "dsh-desktop-mcp-bridge@0.2.1-rc5", "dsh-desktop-mcp", "stdio"]
 startup_timeout_sec = 60
 tool_timeout_sec = 60
 ```

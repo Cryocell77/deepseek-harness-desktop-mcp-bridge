@@ -2,7 +2,7 @@
 
 Releases are prepared manually. CI runs checks without publishing packages or releases.
 
-1. Update package/plugin versions, the compatibility matrix and CHANGELOG.
+1. Update package/plugin versions, the compatibility matrix and CHANGELOG. Before building release archives, synchronize published status, release links and pinned npm commands in both READMEs and npm guides with the version being released. Inspect the packed copies as well.
 2. Run `npm ci`, `npm run check`, `npm run test:compatibility`, `npm run format:check` and `npm audit`.
 3. Build with `npm run package:plugin`, then run `npm run verify:plugin`.
 4. Inspect the archives for private configuration, credentials and workspace files. Check LICENSE, NOTICE and bundled dependency notices.
@@ -18,8 +18,8 @@ Keep experimental releases marked as prereleases. npm distribution and repositor
 The package includes the standalone MCP server and Desktop adapter. The Codex marketplace remains a separate distribution.
 
 1. Complete `repository`, `homepage`, `bugs`, author and license metadata. Check the package name and npm account with `npm whoami`.
-2. Run the local package check above and `npm run verify:npm -- --package ./outputs/dsh-desktop-mcp-bridge-0.2.1-rc3.tgz`.
-3. Commit metadata and build artifacts. Publish the reviewed tarball with `npm publish ./outputs/dsh-desktop-mcp-bridge-0.2.1-rc3.tgz --ignore-scripts --access public --tag next`.
+2. Run the local package check above and `npm run verify:npm -- --package ./outputs/dsh-desktop-mcp-bridge-0.2.1-rc5.tgz`.
+3. Commit metadata and build artifacts. Publish the reviewed tarball with `npm publish ./outputs/dsh-desktop-mcp-bridge-0.2.1-rc5.tgz --ignore-scripts --access public --tag next`.
 4. Compare the registry tarball integrity with the local archive. Run `npm run verify:npm` to install from a fresh anonymous registry cache.
 5. Install the exact registry version through the Desktop-owned plugin installer after saving work and quitting Desktop. Reopen Desktop and test the installed MCP client against it.
 
