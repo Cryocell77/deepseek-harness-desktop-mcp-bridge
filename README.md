@@ -25,7 +25,7 @@ DSH still contacts its configured model provider. This design reduces credential
 
 ## Compatibility and status
 
-**Experimental v0.2.1-rc3 (unreleased).** For Desktop rc.3, build from source using the instructions below; the tagged release commands apply after publication. See the [validation record](docs/VALIDATION.md) for test coverage and known limitations.
+**Experimental v0.2.1-rc3.** Available from [GitHub Releases](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.1-rc3) and [npm](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc3) (`next` channel). See the [validation record](docs/VALIDATION.md) for test coverage and known limitations.
 
 | Component       | Requirement / verified scope                                                                                  |
 | --------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -53,11 +53,11 @@ Installation has **two parts**:
 Install the tagged marketplace from GitHub:
 
 ```sh
-codex plugin marketplace add Cryocell77/codex-deepseek-harness-desktop-bridge --ref v0.2.1-rc3
+codex plugin marketplace add Cryocell77/deepseek-harness-desktop-mcp-bridge --ref v0.2.1-rc3
 codex plugin add dsh-desktop@dsh-desktop-bridge
 ```
 
-Alternatively, download `dsh-desktop-codex-plugin-0.2.1-rc3.zip` from the [v0.2.1-rc3 release](https://github.com/Cryocell77/codex-deepseek-harness-desktop-bridge/releases/tag/v0.2.1-rc3). To build the archive from this source checkout:
+Alternatively, download `dsh-desktop-codex-plugin-0.2.1-rc3.zip` from the [v0.2.1-rc3 release](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.1-rc3). To build the archive from this source checkout:
 
 ```sh
 npm ci
@@ -89,7 +89,7 @@ Save active work and **fully quit DSH Desktop**, then install the staged adapter
 
 Expect `runtime: "existing-desktop"` and `adapter: "dsh-v0.2.0-rc.2"` or `"dsh-v0.2.1-rc.1"` / `"dsh-v0.2.1-rc.2"` / `"dsh-v0.2.1-rc.3"`, matching the connected Desktop. `desktopVersion` and `cordisVersion` report the detected pair; `supportedDesktops` lists all four tested combinations. This checks the bridge connection; it does not validate provider credentials. Default `allowedTools: []` permits conversation while denying every model tool call.
 
-For installation from [`dsh-desktop-mcp-bridge` on npm](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc2), follow the [npm guide](https://github.com/Cryocell77/codex-deepseek-harness-desktop-bridge/blob/main/docs/NPM.md). For a source build or custom configuration paths, follow the [standalone setup guide](docs/STANDALONE-MCP.md). Choose one Codex registration route to avoid duplicate tools.
+For installation from [`dsh-desktop-mcp-bridge` on npm](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc3), follow the [npm guide](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/blob/main/docs/NPM.md). For a source build or custom configuration paths, follow the [standalone setup guide](docs/STANDALONE-MCP.md). Choose one Codex registration route to avoid duplicate tools.
 
 ## Usage examples
 

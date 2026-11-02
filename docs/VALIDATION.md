@@ -48,6 +48,14 @@ On **2026-10-29**, the local bridge **0.2.1-rc3** package was installed through 
 
 An initial startup failed because a previous process had left `bridge.lock`, `bridge.sock` and `ready.json`. The recorded owner process was dead and the socket had no open owner. With the failed bridge component disabled, those three runtime entries were moved to a private backup and the component was re-enabled. No credentials, workspace files or session data were removed.
 
+## npm publication check (bridge 0.2.1-rc3)
+
+On **2026-10-30 (Asia/Hong_Kong)**, the published npm package **0.2.1-rc3** was verified against release commit `8d5eda4a56dfa67409c75e2f7f8edfe17886c633`. The `next` tag points to rc3; `latest` remains rc2.
+
+- Registry metadata, SHA-512 integrity and SHA-1 matched the release archive; the public download was byte-identical.
+- A fresh anonymous installation exposed the CLI and all 10 MCP tools. Explicit initialization and reconnect passed; a missing Desktop returned `DESKTOP_UNAVAILABLE`.
+- The registry-installed MCP client connected to the existing Desktop **0.2.1-rc.3** adapter. This publication check made no model calls and did not reinstall the Desktop adapter; the earlier live task and cancellation run is recorded above.
+
 ## npm installation and Desktop run (bridge 0.2.1-rc2)
 
 Package: [`dsh-desktop-mcp-bridge@0.2.1-rc2`](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc2), published under `next`. Environment: official macOS arm64 DSH Desktop **0.2.1-rc.2**, Cordis **4.0.5**, Schemastery **3.18.5**.

@@ -25,7 +25,7 @@ DSH 仍会请求其已配置的模型服务。这项设计减少密钥复制，�
 
 ## 兼容性与状态
 
-**实验性 v0.2.1-rc3（未发布）。** Desktop rc.3 请按下文从源码构建；固定标签的安装命令将在发布后可用。 测试覆盖范围及已知限制见[验证记录](docs/VALIDATION.md)。
+**实验性 v0.2.1-rc3。** 已发布至 [GitHub Releases](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.1-rc3) 和 [npm](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc3)（`next` 渠道）。测试覆盖范围及已知限制见[验证记录](docs/VALIDATION.md)。
 
 | 组件        | 要求 / 已验证范围                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -53,11 +53,11 @@ DSH 仍会请求其已配置的模型服务。这项设计减少密钥复制，�
 从 GitHub 安装固定版本的插件市场：
 
 ```sh
-codex plugin marketplace add Cryocell77/codex-deepseek-harness-desktop-bridge --ref v0.2.1-rc3
+codex plugin marketplace add Cryocell77/deepseek-harness-desktop-mcp-bridge --ref v0.2.1-rc3
 codex plugin add dsh-desktop@dsh-desktop-bridge
 ```
 
-也可以从 [v0.2.1-rc3 Release](https://github.com/Cryocell77/codex-deepseek-harness-desktop-bridge/releases/tag/v0.2.1-rc3) 下载 `dsh-desktop-codex-plugin-0.2.1-rc3.zip`。若从源码仓库构建安装包：
+也可以从 [v0.2.1-rc3 Release](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.1-rc3) 下载 `dsh-desktop-codex-plugin-0.2.1-rc3.zip`。若从源码仓库构建安装包：
 
 ```sh
 npm ci
@@ -89,7 +89,7 @@ codex plugin add dsh-desktop@dsh-desktop-bridge
 
 应返回 `runtime: "existing-desktop"`，以及与连接桌面端一致的 `adapter: "dsh-v0.2.0-rc.2"` 或 `"dsh-v0.2.1-rc.1"` / `"dsh-v0.2.1-rc.2"` / `"dsh-v0.2.1-rc.3"`。`desktopVersion`、`cordisVersion` 返回实际检测组合，`supportedDesktops` 列出四组已测试版本。此操作检查桥接连接，不验证模型凭据。默认 `allowedTools: []` 允许模型对话，但拒绝全部模型工具调用。
 
-通过 npm 包 [`dsh-desktop-mcp-bridge`](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc2) 安装请参阅 [npm 指南](https://github.com/Cryocell77/codex-deepseek-harness-desktop-bridge/blob/main/docs/NPM.zh-CN.md)；源码构建或自定义配置路径参阅[独立 MCP 指南](docs/STANDALONE-MCP.zh-CN.md)。Codex 侧选择一种注册方式，避免工具重复。
+通过 npm 包 [`dsh-desktop-mcp-bridge`](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc3) 安装请参阅 [npm 指南](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/blob/main/docs/NPM.zh-CN.md)；源码构建或自定义配置路径参阅[独立 MCP 指南](docs/STANDALONE-MCP.zh-CN.md)。Codex 侧选择一种注册方式，避免工具重复。
 
 ## 使用示例
 
