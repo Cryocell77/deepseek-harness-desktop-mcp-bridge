@@ -1,8 +1,10 @@
 # 通过 npm 安装
 
+Desktop **0.2.2-rc.1** 请按[独立 MCP 指南](STANDALONE-MCP.zh-CN.md)从源码构建 **0.2.2-rc1**。下文已发布的 npm 版本支持范围截至 Desktop 0.2.1-rc.5。
+
 [English](NPM.md) · [返回首页](../README.zh-CN.md) · [权限说明](USAGE.zh-CN.md)
 
-`dsh-desktop-mcp-bridge` 包含独立 MCP 服务和 DSH Desktop 适配器，需要 Node >=22.19 及受支持的官方 Desktop 版本。Codex 插件用户仍可使用随包服务和适配器；同时只注册一种 MCP 接入方式。
+`dsh-desktop-mcp-bridge` 包含独立 MCP 服务和 DSH Desktop 适配器，需要 Node >=24.9 及受支持的官方 Desktop 版本。Codex 插件用户仍可使用随包服务和适配器；同时只注册一种 MCP 接入方式。
 
 当前版本：**0.2.1-rc5**，使用 **next** 预发布渠道。下列命令固定安装这一版本。
 

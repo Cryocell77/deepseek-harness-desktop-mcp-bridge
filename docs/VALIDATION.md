@@ -1,11 +1,12 @@
 # Validation / 验证记录
 
-Bridge **v0.2.1-rc5**, macOS arm64, **2026-11-02 (Asia/Hong_Kong)**. Earlier results: [v0.2.0](VALIDATION-v0.2.md).
+Bridge **v0.2.2-rc1**, macOS arm64, **2026-11-07 (Asia/Hong_Kong)**. Earlier results: [v0.2.0](VALIDATION-v0.2.md).
 
 ## Compatibility matrix
 
 | Desktop/core | Cordis | Schemastery | Typecheck | Automated suite | Live Desktop                 |
 | ------------ | ------ | ----------- | --------- | --------------- | ---------------------------- |
+| 0.2.2-rc.1   | 4.1.0  | 3.19.0      | Passed    | 27 passed       | Passed, local package        |
 | 0.2.0-rc.2   | 4.0.4  | 3.18.4      | Passed    | 27 passed       | Not tested                   |
 | 0.2.1-rc.4   | 4.0.5  | 3.18.5      | Passed    | 27 passed       | —                            |
 | 0.2.1-rc.5   | 4.0.5  | 3.18.5      | Passed    | 27 passed       | Passed, local package        |
@@ -14,6 +15,22 @@ Bridge **v0.2.1-rc5**, macOS arm64, **2026-11-02 (Asia/Hong_Kong)**. Earlier res
 | 0.2.1-rc.1   | 4.0.5  | 3.18.5      | Passed    | 27 passed       | Development build, see below |
 
 Run `npm run test:compatibility` to install each release's dependencies in a separate temporary directory and run typechecking and the full suite. Select one target with `-- --desktop 0.2.0-rc.2`. The tests use official Cordis, Loader, AgentLoop, Session, Preset and Default Model services with a scripted model provider; no API key is required.
+
+## 0.2.2-rc.1 assessment
+
+Official tag `dsh-v0.2.2-rc.1` resolves to `66491b05e3f05ad35bcdd4f6cd7ed26041d9e3db`. The installed official macOS application and its guarded core manifests report **0.2.2-rc.1**, Cordis **4.1.0** and Schemastery **3.19.0**. See the [source audit](UPSTREAM-AUDIT.md) for the Host, permissions and executor changes.
+
+Tests use the new official native tool executor and an explicit tool-owned output contract, with a scripted model provider. They cover allowed/denied tools, monotonic guard enforcement after a short-circuit policy, separation from ordinary Desktop agents, real AgentLoop execution, in-flight model/tool cancellation, deadlines and built-plugin activation/unload. All seven exact dependency trees passed typechecking and 27 tests each under Node 24.21.0. The fresh local package installation, portable bundle verification and production dependency audit also passed.
+
+## 0.2.2-rc.1 live Desktop run
+
+On **2026-11-07 (Asia/Hong_Kong)**, after the user saved work and fully quit Desktop, bridge **0.2.2-rc1** was installed from the local archive through the official Desktop-owned installer. Configuration, token, tool allowlist and plugin composition were unchanged. Desktop was reopened and reported `runtime: existing-desktop`, `desktopVersion: 0.2.2-rc.1`, `adapter: dsh-v0.2.2-rc.1` and Cordis `4.1.0`.
+
+A fresh anonymous installation of the local archive exposed all 10 MCP tools and connected to that Host. An isolated session completed a real model task with the exact requested response. Duplicate follow-up submission returned the same task; cancellation settled as `cancelled` with a terminal result. Verification tasks were forgotten, and the session closed and disappeared from the list. Its workspace was retained.
+
+Live prompts requested no tools; permission enforcement and in-flight tool cancellation were verified by the automated suite. Allowed file edits and approval UI routing remain outside this live run. No separate model credentials or DSH CLI/Web runtime were used for task execution.
+
+中文：本地 **0.2.2-rc1** 适配器已在官方 Desktop **0.2.2-rc.1** 通过连接、真实模型任务、后续请求去重、取消、结果读取与会话关闭验证。配置、token 和工具白名单保持不变；实机任务未调用工具，工具权限及工具取消由自动化测试覆盖。
 
 ## rc.4 and rc.5 assessment
 

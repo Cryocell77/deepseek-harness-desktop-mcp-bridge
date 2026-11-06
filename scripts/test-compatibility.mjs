@@ -28,12 +28,31 @@ for (const target of selected) {
     for (const path of ['src', 'tests', 'dist', 'plugins', '.agents', 'tsconfig.json'])
       await cp(join(root, path), join(stage, path), { recursive: true });
     const pkg = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
-    for (const section of ['devDependencies', 'overrides']) {
-      for (const name of Object.keys(pkg[section])) {
-        if (name.startsWith('@deepseek-ai/dsh-')) pkg[section][name] = target.desktop;
-        else if (target.desktop === '0.2.0-rc.2' && oldPins[name])
-          pkg[section][name] = oldPins[name];
-      }
+    const legacy = target.desktop !== '0.2.2-rc.1';
+    if (legacy) delete pkg.devDependencies['@deepseek-ai/dsh-tool-executor-native'];
+    // Historical Cordis packages must resolve as one tree, independently of the
+    // preferred target's dependencies. npm overrides prevent nested copies.
+    const pins =
+      target.desktop === '0.2.0-rc.2'
+        ? oldPins
+        : legacy
+          ? {
+              ...oldPins,
+              '@deepseek-ai/cordis': '4.0.5',
+              '@deepseek-ai/cordis-plugin-group': '1.0.5',
+              '@deepseek-ai/cordis-plugin-loader': '1.0.6',
+              '@deepseek-ai/cordis-plugin-logger-console': '1.0.5',
+              '@deepseek-ai/cordis-plugin-hmr': '1.0.20',
+              '@deepseek-ai/cordis-plugin-include': '1.0.10',
+              '@deepseek-ai/cosmokit': '1.8.6',
+              '@deepseek-ai/cordis-plugin-timer': '1.1.7',
+              '@deepseek-ai/schemastery': '3.18.5',
+            }
+          : {};
+    pkg.overrides = pins;
+    for (const name of Object.keys(pkg.devDependencies)) {
+      if (name.startsWith('@deepseek-ai/dsh-')) pkg.devDependencies[name] = target.desktop;
+      else if (pins[name]) pkg.devDependencies[name] = pins[name];
     }
     await writeFile(join(stage, 'package.json'), JSON.stringify(pkg, null, 2));
     const run = async (args) => {
