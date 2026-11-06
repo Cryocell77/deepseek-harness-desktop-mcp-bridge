@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.2-rc1 (unreleased)
+## 0.2.2-rc1 — 2026-11-07
 
 - Add DSH Desktop 0.2.2-rc.1 with Cordis 4.1.0 and Schemastery 3.19.0.
 - Retain the six previously supported exact Desktop combinations.

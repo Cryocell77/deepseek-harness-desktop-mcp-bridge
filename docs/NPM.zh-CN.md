@@ -1,17 +1,15 @@
 # 通过 npm 安装
 
-Desktop **0.2.2-rc.1** 请按[独立 MCP 指南](STANDALONE-MCP.zh-CN.md)从源码构建 **0.2.2-rc1**。下文已发布的 npm 版本支持范围截至 Desktop 0.2.1-rc.5。
-
 [English](NPM.md) · [返回首页](../README.zh-CN.md) · [权限说明](USAGE.zh-CN.md)
 
 `dsh-desktop-mcp-bridge` 包含独立 MCP 服务和 DSH Desktop 适配器，需要 Node >=24.9 及受支持的官方 Desktop 版本。Codex 插件用户仍可使用随包服务和适配器；同时只注册一种 MCP 接入方式。
 
-当前版本：**0.2.1-rc5**，使用 **next** 预发布渠道。下列命令固定安装这一版本。
+当前版本：**0.2.2-rc1**，使用 **next** 预发布渠道。下列命令固定安装这一版本。
 
 ## 1. 初始化私有配置
 
 ```sh
-npx --yes --package dsh-desktop-mcp-bridge@0.2.1-rc5 dsh-desktop-mcp setup
+npx --yes --package dsh-desktop-mcp-bridge@0.2.2-rc1 dsh-desktop-mcp setup
 ```
 
 这会创建默认的私有状态目录和工作区，或验证已有配置并保留 token。请检查生成配置中的工具权限。需要其他路径时参阅[独立配置指南](STANDALONE-MCP.zh-CN.md)。
@@ -21,7 +19,7 @@ npx --yes --package dsh-desktop-mcp-bridge@0.2.1-rc5 dsh-desktop-mcp setup
 保存任务并完全退出官方 DSH Desktop，再使用应用自带安装器：
 
 ```sh
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add dsh-desktop-mcp-bridge@0.2.1-rc5 --save-exact
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add dsh-desktop-mcp-bridge@0.2.2-rc1 --save-exact
 ```
 
 应用安装位置不同时请调整路径。此命令将插件安装到 Desktop Profile，不会启动独立 Harness 运行时。完成后重新打开 Desktop。
@@ -29,10 +27,10 @@ npx --yes --package dsh-desktop-mcp-bridge@0.2.1-rc5 dsh-desktop-mcp setup
 ## 3. 检查连接
 
 ```sh
-npx --yes --package dsh-desktop-mcp-bridge@0.2.1-rc5 dsh-desktop-mcp doctor
+npx --yes --package dsh-desktop-mcp-bridge@0.2.2-rc1 dsh-desktop-mcp doctor
 ```
 
-应返回桥接版本 `0.2.1-rc5` 和 `runtime: "existing-desktop"`。此检查不调用模型。
+应返回桥接版本 `0.2.2-rc1` 和 `runtime: "existing-desktop"`。此检查不调用模型。
 
 ## 4. 注册独立 MCP 服务
 
@@ -41,7 +39,7 @@ npx --yes --package dsh-desktop-mcp-bridge@0.2.1-rc5 dsh-desktop-mcp doctor
 ```toml
 [mcp_servers.dsh_desktop]
 command = "npx"
-args = ["--yes", "--package", "dsh-desktop-mcp-bridge@0.2.1-rc5", "dsh-desktop-mcp", "stdio"]
+args = ["--yes", "--package", "dsh-desktop-mcp-bridge@0.2.2-rc1", "dsh-desktop-mcp", "stdio"]
 startup_timeout_sec = 60
 tool_timeout_sec = 60
 ```

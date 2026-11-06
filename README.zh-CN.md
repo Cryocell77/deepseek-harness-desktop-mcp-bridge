@@ -25,7 +25,7 @@ DSH 仍会请求其已配置的模型服务。这项设计减少密钥复制，�
 
 ## 兼容性与状态
 
-**源码版本 v0.2.2-rc1（暂未发布）。** 已发布的 v0.2.1-rc5 可从以下渠道获取： [GitHub Releases](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.1-rc5) 和 [npm](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc5)（`next` 渠道）。测试覆盖范围及已知限制见[验证记录](docs/VALIDATION.md)。
+**实验性 v0.2.2-rc1。** 已发布至 [GitHub Releases](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.2-rc1) 和 [npm](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.2-rc1)（`next` 渠道）。测试覆盖范围及已知限制见[验证记录](docs/VALIDATION.md)。
 
 | 组件        | 要求 / 已验证范围                                                                                                                                                                                      |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -35,13 +35,11 @@ DSH 仍会请求其已配置的模型服务。这项设计减少密钥复制，�
 | Git         | 创建仓库 worktree 时需要                                                                                                                                                                               |
 | 其他平台    | Linux 传输可测试，但不宣称兼容 Linux Desktop；尚未实现 Windows 传输                                                                                                                                    |
 
-源码桥接版本 **v0.2.2-rc1** 对应 DSH Desktop **0.2.2-rc.1**，并保留上表中的旧版支持。仅接受这些完整版本组合；其他版本或核心包混装会被拒绝。
+桥接版本 **v0.2.2-rc1** 对应 DSH Desktop **0.2.2-rc.1**，并保留上表中的旧版支持。仅接受这些完整版本组合；其他版本或核心包混装会被拒绝。
 
 新会话在创建时读取 Desktop 的**默认模型**，并使用获准的已安装 Preset。提供方和凭据继续由 Desktop 管理。Skills 按 DSH 原有规则在新工作区发现；不会复制已有聊天、单会话设置、未发送文本及主仓库未提交/忽略的项目文件。[复用范围](docs/USAGE.zh-CN.md)。
 
 ## 安装与首次连接
-
-Desktop **0.2.2-rc.1** 请使用下文的 **0.2.2-rc1 源码构建**。已发布的 v0.2.1-rc5 包支持范围截至 Desktop 0.2.1-rc.5。
 
 安装包含**两个部分**：
 
@@ -52,14 +50,14 @@ Desktop **0.2.2-rc.1** 请使用下文的 **0.2.2-rc1 源码构建**。已发布
 
 ### 1. 安装 Codex 插件
 
-Desktop 0.2.1-rc.5 及更早的受支持版本可安装已发布的插件市场：
+从 GitHub 安装固定版本的插件市场：
 
 ```sh
-codex plugin marketplace add Cryocell77/deepseek-harness-desktop-mcp-bridge --ref v0.2.1-rc5
+codex plugin marketplace add Cryocell77/deepseek-harness-desktop-mcp-bridge --ref v0.2.2-rc1
 codex plugin add dsh-desktop@dsh-desktop-bridge
 ```
 
-也可以从 [v0.2.1-rc5 Release](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.1-rc5) 下载 `dsh-desktop-codex-plugin-0.2.1-rc5.zip`。若从源码仓库构建安装包：
+也可以从 [v0.2.2-rc1 Release](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.2-rc1) 下载 `dsh-desktop-codex-plugin-0.2.2-rc1.zip`。若从源码仓库构建安装包：
 
 ```sh
 npm ci
@@ -91,7 +89,7 @@ codex plugin add dsh-desktop@dsh-desktop-bridge
 
 应返回 `runtime: "existing-desktop"`，以及与连接桌面端一致的 `adapter: "dsh-v0.2.0-rc.2"` 或 `"dsh-v0.2.1-rc.1"` / `"dsh-v0.2.1-rc.2"` / `"dsh-v0.2.1-rc.3"` / `"dsh-v0.2.1-rc.4"` / `"dsh-v0.2.1-rc.5"` / `"dsh-v0.2.2-rc.1"`。`desktopVersion`、`cordisVersion` 返回实际检测组合，`supportedDesktops` 列出七组已测试版本。此操作检查桥接连接，不验证模型凭据。默认 `allowedTools: []` 允许模型对话，但拒绝全部模型工具调用。
 
-通过 npm 包 [`dsh-desktop-mcp-bridge`](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc5) 安装请参阅 [npm 指南](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/blob/main/docs/NPM.zh-CN.md)；源码构建或自定义配置路径参阅[独立 MCP 指南](docs/STANDALONE-MCP.zh-CN.md)。Codex 侧选择一种注册方式，避免工具重复。
+通过 npm 包 [`dsh-desktop-mcp-bridge`](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.2-rc1) 安装请参阅 [npm 指南](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/blob/main/docs/NPM.zh-CN.md)；源码构建或自定义配置路径参阅[独立 MCP 指南](docs/STANDALONE-MCP.zh-CN.md)。Codex 侧选择一种注册方式，避免工具重复。
 
 ## 使用示例
 
