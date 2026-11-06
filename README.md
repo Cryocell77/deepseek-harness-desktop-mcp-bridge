@@ -25,21 +25,23 @@ DSH still contacts its configured model provider. This design reduces credential
 
 ## Compatibility and status
 
-**Experimental v0.2.1-rc5.** Available from [GitHub Releases](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.1-rc5) and [npm](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc5) (`next` channel). See the [validation record](docs/VALIDATION.md) for test coverage and known limitations.
+**Source v0.2.2-rc1 (unreleased).** The published v0.2.1-rc5 is available from [GitHub Releases](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/releases/tag/v0.2.1-rc5) and [npm](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc5) (`next` channel). See the [validation record](docs/VALIDATION.md) for test coverage and known limitations.
 
-| Component       | Requirement / verified scope                                                                                                          |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| DSH Desktop     | Official macOS **0.2.0-rc.2 / Cordis 4.0.4**, or **0.2.1-rc.1 / 0.2.1-rc.2 / 0.2.1-rc.3 / 0.2.1-rc.4 / 0.2.1-rc.5 with Cordis 4.0.5** |
-| Codex           | Local Desktop/CLI with portable Agent Plugins support; discovery verified with CLI **0.163.0-alpha.10.2**                             |
-| Node.js         | **>=22.19.0**, accessible to Codex                                                                                                    |
-| Git             | Required for repository worktrees                                                                                                     |
-| Other platforms | Linux transport is testable; Linux Desktop compatibility is not claimed; Windows transport is not implemented                         |
+| Component       | Requirement / verified scope                                                                                                                                                              |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DSH Desktop     | Official macOS **0.2.2-rc.1 / Cordis 4.1.0 / Schemastery 3.19.0**, **0.2.0-rc.2 / Cordis 4.0.4**, or **0.2.1-rc.1 / 0.2.1-rc.2 / 0.2.1-rc.3 / 0.2.1-rc.4 / 0.2.1-rc.5 with Cordis 4.0.5** |
+| Codex           | Local Desktop/CLI with portable Agent Plugins support; discovery verified with CLI **0.163.0-alpha.10.2**                                                                                 |
+| Node.js         | **>=24.9.0**, accessible to Codex                                                                                                                                                         |
+| Git             | Required for repository worktrees                                                                                                                                                         |
+| Other platforms | Linux transport is testable; Linux Desktop compatibility is not claimed; Windows transport is not implemented                                                                             |
 
-Bridge **v0.2.1-rc5** targets DSH Desktop **0.2.1-rc.5** and retains the older versions listed above. Only these complete combinations are supported. Other versions and mixed core packages are rejected.
+Source bridge **v0.2.2-rc1** targets DSH Desktop **0.2.2-rc.1** and retains the older versions listed above. Only these complete combinations are supported. Other versions and mixed core packages are rejected.
 
 A new session takes the Desktop **default model at creation** and an allowlisted installed preset. Providers/credentials remain managed by Desktop. Skills follow normal DSH discovery in the new workspace; existing chats, per-chat overrides, unsaved text and uncommitted/ignored project files are not copied. [Reuse boundaries](docs/USAGE.md).
 
 ## Install and connect
+
+Desktop **0.2.2-rc.1** requires the **0.2.2-rc1 source build** below. The published v0.2.1-rc5 packages support Desktop through 0.2.1-rc.5.
 
 Installation has **two parts**:
 
@@ -50,7 +52,7 @@ Installation has **two parts**:
 
 ### 1. Install the Codex plugin
 
-Install the tagged marketplace from GitHub:
+For Desktop up to 0.2.1-rc.5, install the published marketplace:
 
 ```sh
 codex plugin marketplace add Cryocell77/deepseek-harness-desktop-mcp-bridge --ref v0.2.1-rc5
@@ -87,7 +89,7 @@ Save active work and **fully quit DSH Desktop**, then install the staged adapter
 
 > Call `dsh_connection_info`. Report the runtime, adapter version and effective permissions without submitting a model task.
 
-Expect `runtime: "existing-desktop"` and `adapter: "dsh-v0.2.0-rc.2"` or `"dsh-v0.2.1-rc.1"` / `"dsh-v0.2.1-rc.2"` / `"dsh-v0.2.1-rc.3"` / `"dsh-v0.2.1-rc.4"` / `"dsh-v0.2.1-rc.5"`, matching the connected Desktop. `desktopVersion` and `cordisVersion` report the detected pair; `supportedDesktops` lists all six tested combinations. This checks the bridge connection; it does not validate provider credentials. Default `allowedTools: []` permits conversation while denying every model tool call.
+Expect `runtime: "existing-desktop"` and `adapter: "dsh-v0.2.0-rc.2"` or `"dsh-v0.2.1-rc.1"` / `"dsh-v0.2.1-rc.2"` / `"dsh-v0.2.1-rc.3"` / `"dsh-v0.2.1-rc.4"` / `"dsh-v0.2.1-rc.5"` / `"dsh-v0.2.2-rc.1"`, matching the connected Desktop. `desktopVersion` and `cordisVersion` report the detected pair; `supportedDesktops` lists all seven tested combinations. This checks the bridge connection; it does not validate provider credentials. Default `allowedTools: []` permits conversation while denying every model tool call.
 
 For installation from [`dsh-desktop-mcp-bridge` on npm](https://www.npmjs.com/package/dsh-desktop-mcp-bridge/v/0.2.1-rc5), follow the [npm guide](https://github.com/Cryocell77/deepseek-harness-desktop-mcp-bridge/blob/main/docs/NPM.md). For a source build or custom configuration paths, follow the [standalone setup guide](docs/STANDALONE-MCP.md). Choose one Codex registration route to avoid duplicate tools.
 

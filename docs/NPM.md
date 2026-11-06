@@ -1,8 +1,10 @@
 # Install from npm
 
+For Desktop **0.2.2-rc.1**, build **0.2.2-rc1** from source using the [standalone guide](STANDALONE-MCP.md). The published npm version below supports Desktop through 0.2.1-rc.5.
+
 [简体中文](NPM.zh-CN.md) · [README](../README.md) · [Permissions](USAGE.md)
 
-The `dsh-desktop-mcp-bridge` package contains the standalone MCP server and the DSH Desktop adapter. It requires Node >=22.19 and a supported official Desktop version. Codex plugin users can continue using the bundled server and adapter; register one MCP route at a time.
+The `dsh-desktop-mcp-bridge` package contains the standalone MCP server and the DSH Desktop adapter. It requires Node >=24.9 and a supported official Desktop version. Codex plugin users can continue using the bundled server and adapter; register one MCP route at a time.
 
 Current version: **0.2.1-rc5**. Prerelease channel: **next**. Commands below pin the version explicitly.
 

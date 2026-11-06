@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.2-rc1 (unreleased)
+
+- Add DSH Desktop 0.2.2-rc.1 with Cordis 4.1.0 and Schemastery 3.19.0.
+- Retain the six previously supported exact Desktop combinations.
+- Exercise the new official native tool executor in compatibility tests; replace the removed upstream test helper with a tool-owned output contract.
+- Update development dependencies and CI to Node >=24.9, matching the new upstream requirement.
+
 ## 0.2.1-rc5 — 2026-11-02
 
 - Add DSH Desktop 0.2.1-rc.4 and 0.2.1-rc.5 support with Cordis 4.0.5 and Schemastery 3.18.5.

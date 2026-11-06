@@ -1,6 +1,6 @@
 # Contributing
 
-Use Node >=22.19 and `npm ci`. Run `npm run check` and `npm run format:check` before submitting changes. Keep package-lock.json in sync. Never include API keys, auth.token, local state/workspaces or private chat data.
+Use Node >=24.9 and `npm ci`. Run `npm run check` and `npm run format:check` before submitting changes. Keep package-lock.json in sync. Never include API keys, auth.token, local state/workspaces or private chat data.
 
 Keep DSH integration in the adapter module. A new Desktop release requires pinned-source verification, exact-package typechecking, real Loader/AgentLoop tests, permission/cancellation tests, and a user-run signed-Desktop acceptance test. Do not remove version checks, copy internal Host credentials or add implicit CLI/Web fallback.
 
@@ -12,4 +12,4 @@ Codex plugin payloads under plugins/dsh-desktop/runtime and its Desktop archive 
 
 Run `npm run test:compatibility` before changing the supported version matrix. It installs exact dependencies and runs strict typechecking plus the complete suite in separate temporary directories for each supported Desktop version. It never edits the user Desktop profile or starts a Harness CLI/Web runtime.
 
-Run `npm run verify:npm -- --package ./outputs/dsh-desktop-mcp-bridge-0.2.1-rc5.tgz` after packaging to check installation into an empty consumer project, CLI registration, MCP initialization and private configuration setup. Omitting `--package` installs the exact current version from the public registry with a fresh anonymous cache. `--desktop-config` adds a connection check; `--live-task` additionally makes bounded real model calls and tests session follow-ups/cancellation.
+Run `npm run verify:npm -- --package ./outputs/dsh-desktop-mcp-bridge-0.2.2-rc1.tgz` after packaging to check installation into an empty consumer project, CLI registration, MCP initialization and private configuration setup. Omitting `--package` installs the exact current version from the public registry with a fresh anonymous cache. `--desktop-config` adds a connection check; `--live-task` additionally makes bounded real model calls and tests session follow-ups/cancellation.

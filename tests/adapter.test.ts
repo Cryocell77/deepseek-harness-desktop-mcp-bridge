@@ -16,7 +16,7 @@ import LlmRuntime, {
   type LlmResolvedModelInfo,
 } from '@deepseek-ai/dsh-llm';
 import type {} from '@deepseek-ai/dsh-session-projection';
-import { defineContentToolFixture } from '@deepseek-ai/dsh-tools';
+import type { ToolDefinition } from '@deepseek-ai/dsh-tools';
 import { DshDesktopRuntime } from '../src/dsh-adapter.ts';
 import { assertCompatible } from '../src/desktop-plugin.ts';
 import { until } from './helpers.ts';
@@ -93,6 +93,12 @@ async function compose(
     await ctx.loader.create({ name: `@deepseek-ai/${name}`, config });
   }
   await ctx.loader.await();
+  // Since 0.2.2, tool execution is selected by a separate official plugin.
+  const desktop = ctx.pluginPackages.packageOf('@deepseek-ai/dsh-agent', import.meta.url)!.version;
+  if (desktop === '0.2.2-rc.1') {
+    await ctx.loader.create({ name: '@deepseek-ai/dsh-tool-executor-native', config: {} });
+    await ctx.loader.await();
+  }
   assert.ok(ctx.get('agents'));
   assert.ok(ctx.get('agentPresets'));
   const unregister = await ctx.agentPresets.register({ id: 'standard', plugins: [] });
@@ -101,18 +107,20 @@ async function compose(
   ctx.effect(() => ctx.llm.registerAdapter(['bridge-test'], adapter));
   let executions = 0;
   ctx.effect(() =>
-    ctx.tools.register(
-      defineContentToolFixture({
-        name: 'fixture_tool',
-        description: 'Test permission executor',
-        parameters: {},
-        execute: async (_args, exec) => {
-          executions++;
-          await toolBody?.(exec.signal);
-          return [{ type: 'text', text: 'executed' }];
-        },
-      }),
-    ),
+    ctx.tools.register({
+      name: 'fixture_tool',
+      description: 'Test permission executor',
+      parameters: { type: 'object', properties: {}, required: [] },
+      output: {
+        schema: { type: 'string' },
+        render: (_args, value) => [{ type: 'text', text: String(value) }],
+      },
+      execute: async (_args, exec) => {
+        executions++;
+        await toolBody?.(exec.signal);
+        return 'executed';
+      },
+    } satisfies ToolDefinition),
   );
   return { ctx, adapter, executions: () => executions };
 }
